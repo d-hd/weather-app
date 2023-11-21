@@ -1,0 +1,30 @@
+* {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Monserat', sans-serif;
+  color: $colorCommonBlack;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+
+  @include laptops {
+    max-width: 992px;
+  }
+
+  @include tablets {
+    max-width: 640px;
+    width: 98%;
+  }
+
+  @include phones {
+    width: initial;
+    padding: 0 16px;
+  }
+}
