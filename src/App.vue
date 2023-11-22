@@ -2,26 +2,15 @@
   <main>
     <div class="container">
       <div class="wrapper">
-        <div class="search">
-          <input type="text" class="search__bar" placeholder="поиск" v-model="query" @keypress.enter="fetchWeather">
-        </div>
-        {{ query }}
-        <div class="weather" v-if="weather.main">
-          <div class="weather__wrapper">
-            <div class="weather__location">{{ weather.name }}, {{ weather.sys.country }}</div>
-            <div class="weather__data">Вторник 21 ноябра 2023</div>
-          </div>
-          <div class="weather__wrapper">
-            <div class="weather__temp">10°C</div>
-            <div class="weather__state">Дождь</div>
-          </div>
-        </div>
+        <Search v-model="query"/>
+        
       </div>
     </div>
   </main>
 </template>
 
 <script setup>
+import Search from './components/Search.vue';
 import { ref } from 'vue';
 
 const apiKey = 'e543924981f043e35272b2963f06c4a9'
@@ -29,22 +18,22 @@ const url = 'https://openweathermap.org/api/2.5/'
 const query = ref('')
 const weather = ref({})
 
-function fetchWeather(e) {
-  console.log(`${url}weather?q=#${query.value}&units=metric&APPID=${apiKey}`)
-  if (e.key === 'Enter') {
-    fetch(`${url}weather?q=#${query.value}&units=metric&APPID=${apiKey}`, {
-      method: 'GET',
-      mode: 'no-cors',
-    })
-      .then(res => {
-        return res.json()
-      }).then(setResults)
-  }
-}
+// function fetchWeather(e) {
+//   console.log(`${url}weather?q=#${query.value}&units=metric&APPID=${apiKey}`)
+//   if (e.key === 'Enter') {
+//     fetch(`${url}weather?q=#${query.value}&units=metric&APPID=${apiKey}`, {
+//       method: 'GET',
+//       mode: 'no-cors',
+//     })
+//       .then(res => {
+//         return res.json()
+//       }).then(setResults)
+//   }
+// }
 
-function setResults(result) {
-  weather.value = result
-}
+// function setResults(result) {
+//   weather.value = result
+// }
 </script>
 
 <style scoped lang="scss">
@@ -58,30 +47,6 @@ function setResults(result) {
   height: 100vh;
   padding: 25px;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75));
-}
-
-.search {
-  width: 100%;
-  margin-bottom: 30px;
-}
-
-.search__bar {
-  display: block;
-  padding: 15px;
-  color: #313131;
-  font-style: 20px;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 0 16px 0 16px;
-  transition: 0.4s;
-  outline: none;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
-}
-
-.search__bar:focus {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
-  border-radius: 16px 0 16px 0;
-  background-color: rgba(255, 255, 255, 0.75);
 }
 
 .weather__location {
