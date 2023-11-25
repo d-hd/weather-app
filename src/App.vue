@@ -1,10 +1,9 @@
 <template>
   <main>
-    <div class="container">
-      <div class="wrapper">
-        <Search v-model="query"/>
-        
-      </div>
+    <div class="wrapper">
+      <div class="container">
+      <Search v-model="query"/>
+    </div>
     </div>
   </main>
 </template>
@@ -37,16 +36,13 @@ const weather = ref({})
 </script>
 
 <style scoped lang="scss">
-.container {
-  background-image: url('./assets/img/cold_bg.jpg');
-  block-size: cover;
-  background-position: bottom;
-}
-
 .wrapper {
   height: 100vh;
-  padding: 25px;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75));
+  background-image: linear-gradient(0deg, rgba(49,61,109, 100) 0%, rgba(98,124,157, 100) 100%);
+
+  &.warm {
+    background-image: linear-gradient(0deg, rgba(118,123,45, 100) 0%, rgba(217,185,69, 100) 100%);
+  }
 }
 
 .weather__location {
@@ -54,7 +50,7 @@ const weather = ref({})
   font-weight: 500;
   text-align: center;
   color: #ffffff;
-  text-shadow: 1px 3px rgba(0, 0, 0, 0.25);
+  text-shadow: 1px 3px $mainGray;
 }
 
 .weather__data {
@@ -75,11 +71,11 @@ const weather = ref({})
   color: #fff;
   font-size: 102px;
   font-weight: 900;
-  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  text-shadow: 3px 6px $mainGray;
   background-color: rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   margin: 30px 0;
-  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 3px 6px $mainGray;
 }
 
 .weather__state {
@@ -87,6 +83,6 @@ const weather = ref({})
   font-size: 48px;
   font-weight: 700;
   font-style: italic;
-  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  text-shadow: 3px 6px $mainGray;
 }
 </style>

@@ -1,4 +1,4 @@
-import './assets/styles/normalize.scss'
+import './assets/styles/normalize.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'

@@ -32,6 +32,7 @@ function updateValue(e) {
 .search {
   width: 100%;
   margin-bottom: 30px;
+  height: 50px;
 }
 
 .search__bar {
@@ -44,11 +45,11 @@ function updateValue(e) {
   border-radius: 0 16px 0 16px;
   transition: 0.4s;
   outline: none;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 8px $mainGray;
 }
 
 .search__bar:focus {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 8px $mainGray;
   border-radius: 16px 0 16px 0;
   background-color: rgba(255, 255, 255, 0.75);
 }

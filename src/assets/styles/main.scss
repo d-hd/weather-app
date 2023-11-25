@@ -1,3 +1,6 @@
+// @import './_normalize.scss';
+// @import './_variables.scss';
+// @import './_mixins.scss';
 * {
   height: 100%;
   width: 100%;
@@ -6,7 +9,6 @@
 
 html {
   font-family: 'Monserat', sans-serif;
-  color: $colorCommonBlack;
 }
 
 .container {
