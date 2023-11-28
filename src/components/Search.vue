@@ -13,11 +13,11 @@
 const props = defineProps({
   modelValue: {
     type: String,
-    desc: ''
+    desc: 'Значения для инпута'
   },
   placeholder: {
     type: String,
-    desc: '',
+    desc: 'Placeholder для инпута',
     default: 'Поиск...'
   },
 })
@@ -31,7 +31,6 @@ function updateValue(e) {
 <style lang="scss" scoped>
 .search {
   width: 100%;
-  margin-bottom: 30px;
   height: 50px;
 }
 
