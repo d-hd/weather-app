@@ -13,12 +13,12 @@
 const props = defineProps({
   modelValue: {
     type: String,
-    desc: 'Значения для инпута'
+    desc: 'Input values'
   },
   placeholder: {
     type: String,
-    desc: 'Placeholder для инпута',
-    default: 'Поиск...'
+    desc: 'Placeholder for input',
+    default: 'Search...'
   },
 })
 const emit = defineEmits(['update:modelValue'])

@@ -1,18 +1,26 @@
 <template>
-  <div class="weather">
+  <div
+    v-if="weatherData"
+    class="weather">
     <div class="weather__wrapper">
-      <div class="weather__location">Москва</div>
-      <div class="weather__data">Вторник 21 ноябра 2023</div>
+      <div class="weather__location">{{ weatherData.town }} {{ weatherData.country }}</div>
+      <div class="weather__data">{{ weatherData.date }}</div>
+      <div class="weather__icon">{{ weatherData.icon }}</div>
     </div>
     <div class="weather__wrapper">
-      <div class="weather__temp">10°C</div>
-      <div class="weather__state">Дождь</div>
+      <div class="weather__temp">{{ weatherData.temp }}°C</div>
+      <div class="weather__state">{{ weatherData.state }}</div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+const props = defineProps({
+  weatherData: {
+    type: Object,
+    desc: 'Weather data',
+  }
+})
 </script>
 
 <style lang="scss" scoped>
