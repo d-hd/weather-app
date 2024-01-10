@@ -22,10 +22,8 @@ const weatherData = ref(null)
 const query = ref('')
 
 async function getWeatherByCountry(country) {
-  // weather.value = country
   const res = JSON.parse('{"coord":{"lon":37.6156,"lat":55.7522},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":-3.43,"feels_like":-7.31,"temp_min":-3.87,"temp_max":-2.76,"pressure":1023,"humidity":97,"sea_level":1023,"grnd_level":1003},"visibility":6872,"wind":{"speed":2.7,"deg":258,"gust":8.65},"clouds":{"all":56},"dt":1702745327,"sys":{"type":1,"id":9027,"country":"RU","sunrise":1702706023,"sunset":1702731374},"timezone":10800,"id":524901,"name":"Moscow","cod":200}');
 
-  console.log(res)
   sanitizeData(res)
   // fetch
   // setResults(result)
@@ -34,12 +32,13 @@ async function getWeatherByCountry(country) {
 function sanitizeData(weather) {
   weatherData.value = {
     town: weather.name,
-    country: weather.sys.country,
+    countryCode: weather.sys.country,
     date: weather.dt,
     icon: weather.weather[0].icon,
     temp: weather.main.temp,
     state: weather.weather[0].main,
   }
+
 }
 </script>
 

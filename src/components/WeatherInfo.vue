@@ -3,24 +3,33 @@
     v-if="weatherData"
     class="weather">
     <div class="weather__wrapper">
-      <div class="weather__location">{{ weatherData.town }} {{ weatherData.country }}</div>
-      <div class="weather__data">{{ weatherData.date }}</div>
-      <div class="weather__icon">{{ weatherData.icon }}</div>
+      <div class="weather__location">{{ weatherData.town }} {{ country }}</div>
+      <div class="weather__data">{{ date }}</div>
+      <img 
+        :src="`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`"
+        alt="Weather icon"/>
     </div>
     <div class="weather__wrapper">
-      <div class="weather__temp">{{ weatherData.temp }}°C</div>
+      <div class="weather__temp">{{ Math.round(weatherData.temp) }}°C</div>
       <div class="weather__state">{{ weatherData.state }}</div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useCountry } from '/src/composables/convertCountries.js'
+import { useDate } from '/src/composables/convertDate.js'
+
 const props = defineProps({
   weatherData: {
     type: Object,
     desc: 'Weather data',
   }
 })
+
+const country = computed(() => useCountry(props.weatherData?.countryCode))
+const date = computed(() => useDate(props.weatherData?.date))
 </script>
 
 <style lang="scss" scoped>
