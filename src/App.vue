@@ -1,4 +1,5 @@
 <template>
+  <Rain/>
   <main>
     <div class="wrapper">
       <div class="container">
@@ -16,6 +17,8 @@
 <script setup>
 import Search from './components/Search.vue'
 import WeatherInfo from './components/WeatherInfo.vue';
+import Snow from './components/WeatherState/Snow.vue';
+import Rain from './components/WeatherState/Rain.vue';
 import { computed, ref } from 'vue'
 
 const weatherData = ref(null)
