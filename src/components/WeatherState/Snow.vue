@@ -1,6 +1,6 @@
 <template>
   <div
-    v-for="index in 100"
+    v-for="index in 150"
     :key="index"
     class="snow"
     ></div>
@@ -13,7 +13,7 @@
   @return $random_range;
 }
 .snow {
-  $total: 200;
+  $total: 150;
   position: absolute;
   width: 10px;
   height: 10px;
@@ -21,12 +21,12 @@
   border-radius: 50%;
 
   @for $i from 1 through $total {
-    $random-x: random(1000000) * 0.0001vw;
-    $random-offset: random_range(-100000, 100000) * 0.0001vw;
+    $random-x: random(1000000) * 0.0001svw;
+    $random-offset: calc(random_range(-100000, 100000) * 0.0001svw);
     $random-x-end: $random-x + $random-offset;
-    $random-x-end-yoyo: $random-x + ($random-offset / 2);
-    $random-yoyo-time: random_range(30000, 80000) / 100000;
-    $random-yoyo-y: $random-yoyo-time * 100vh;
+    $random-x-end-yoyo: $random-x + calc(($random-offset / 2));
+    $random-yoyo-time: calc(random_range(30000, 80000) / 100000);
+    $random-yoyo-y: $random-yoyo-time * 100svh;
     $random-scale: random(10000) * 0.0001;
     $fall-duration: random_range(10, 30) * 1s;
     $fall-delay: random(30) * -1s;

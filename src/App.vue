@@ -1,14 +1,15 @@
 <template>
-  <Rain/>
-  <main>
+  <main class="main">
+    <Snow v-if="weatherData?.state === 'snow'" />
+    <Rain v-if="weatherData?.state === 'rain'"/>
     <div class="wrapper">
       <div class="container">
         <div class="column pt-5 mb-3">
           <Search 
           :modelValue="query"
-          @update:modelValue="(value) => getWeatherByCountry(value)"/>
+          @update:modelValue="(value) => getWeatherByCountry(value)" />
         </div>
-        <WeatherInfo :weatherData="weatherData"/>
+        <WeatherInfo :weatherData="weatherData" />
       </div>
     </div>
   </main>
