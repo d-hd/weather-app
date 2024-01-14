@@ -15,6 +15,7 @@
 .snow {
   $total: 150;
   position: absolute;
+  z-index: 3;
   width: 10px;
   height: 10px;
   background: $mainWhite;

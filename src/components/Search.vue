@@ -24,23 +24,42 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 function updateValue(e) {
- emit('update:modelValue', e.target.value)
+  emit('update:modelValue', e.target.value)
 }
 </script>
 
 <style lang="scss" scoped>
+@keyframes decrease {
+  0% {
+    scale: 1.5;
+  }
+
+  100% {
+    scale: 1;
+  }
+}
+
 .search {
-  width: 100%;
-  height: 50px;
+  position: relative;
+  z-index: 5;
+
+  &.large {
+    scale: 1.5;
+    transition: all 2s ease;
+  }
+
+  &.active {
+    animation: decrease 2s forwards;
+  }
 }
 
 .search__bar {
   display: block;
   padding: 15px;
   color: #313131;
-  font-style: 20px;
+  font-size: 20px;
   border: none;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.75);
   border-radius: 0 16px 0 16px;
   transition: 0.4s;
   outline: none;
@@ -50,6 +69,6 @@ function updateValue(e) {
 .search__bar:focus {
   box-shadow: 0 0 8px $mainGray;
   border-radius: 16px 0 16px 0;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 1);
 }
 </style>

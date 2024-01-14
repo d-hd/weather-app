@@ -1,12 +1,16 @@
 <template>
   <main class="main">
     <Snow v-if="weatherData?.state === 'snow'" />
-    <Rain v-if="weatherData?.state === 'rain'"/>
+    <Rain v-if="weatherData?.state === 'rain'" />
+    <Cloud v-if="weatherData?.state === 'Clouds'"/>
     <div class="wrapper">
       <div class="container">
-        <div class="column pt-5 mb-3">
+        <div 
+          class="column active"
+          :class="{corner: weatherData}">
           <Search 
           :modelValue="query"
+          :class="{large: !weatherData}"
           @update:modelValue="(value) => getWeatherByCountry(value)" />
         </div>
         <WeatherInfo :weatherData="weatherData" />
@@ -20,6 +24,7 @@ import Search from './components/Search.vue'
 import WeatherInfo from './components/WeatherInfo.vue';
 import Snow from './components/WeatherState/Snow.vue';
 import Rain from './components/WeatherState/Rain.vue';
+import Cloud from './components/WeatherState/Cloud.vue';
 import { computed, ref } from 'vue'
 
 const weatherData = ref(null)
@@ -42,7 +47,7 @@ function sanitizeData(weather) {
     temp: weather.main.temp,
     state: weather.weather[0].main,
   }
-
+  console.log(weatherData.value.state)
 }
 </script>
 
