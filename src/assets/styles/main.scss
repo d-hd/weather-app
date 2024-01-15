@@ -33,6 +33,11 @@ html {
   display: flex;
 }
 
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
 .corner {
   position: relative;
   animation: moveToCorner 1s forwards;
@@ -77,5 +82,15 @@ html {
     top: 0;
     left: 30px;
     transform: translate(0, 0);  
+  }
+}
+
+@keyframes decrease {
+  0% {
+    scale: 1.5;
+  }
+
+  100% {
+    scale: 1;
   }
 }

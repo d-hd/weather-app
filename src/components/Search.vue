@@ -29,16 +29,6 @@ function updateValue(e) {
 </script>
 
 <style lang="scss" scoped>
-@keyframes decrease {
-  0% {
-    scale: 1.5;
-  }
-
-  100% {
-    scale: 1;
-  }
-}
-
 .search {
   position: relative;
   z-index: 5;

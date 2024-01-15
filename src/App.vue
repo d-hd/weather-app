@@ -6,12 +6,13 @@
     <div class="wrapper">
       <div class="container">
         <div 
-          class="column active"
+          class="column active center"
           :class="{corner: weatherData}">
           <Search 
           :modelValue="query"
           :class="{large: !weatherData}"
           @update:modelValue="(value) => getWeatherByCountry(value)" />
+          <NavigationButton :class="{large: !weatherData}"/>
         </div>
         <WeatherInfo :weatherData="weatherData" />
       </div>
@@ -25,6 +26,7 @@ import WeatherInfo from './components/WeatherInfo.vue';
 import Snow from './components/WeatherState/Snow.vue';
 import Rain from './components/WeatherState/Rain.vue';
 import Cloud from './components/WeatherState/Cloud.vue';
+import NavigationButton from './components/NavigationButton.vue';
 import { computed, ref } from 'vue'
 
 const weatherData = ref(null)
