@@ -32,9 +32,12 @@ function updateValue(e) {
 .search {
   position: relative;
   z-index: 5;
+  margin-right: 20px;
+  height: 50px;
 
   &.large {
     scale: 1.5;
+    margin-right: 100px;
     transition: all 2s ease;
   }
 
@@ -47,13 +50,14 @@ function updateValue(e) {
   display: block;
   padding: 15px;
   color: #313131;
-  font-size: 20px;
+  font-size: 18px;
   border: none;
   background-color: rgba(255, 255, 255, 0.75);
   border-radius: 0 16px 0 16px;
   transition: 0.4s;
   outline: none;
   box-shadow: 0 0 8px $mainGray;
+  height: 100%;
 }
 
 .search__bar:focus {

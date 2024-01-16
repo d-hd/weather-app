@@ -1,17 +1,30 @@
 <template>
-  <div class="navigationButton"></div>
+  <div class="navigationButton">
+    <img
+      src="../assets/img/navigationButton.svg" 
+      alt="compass"
+      @click="detecCoordinates">
+  </div>
 </template>
+
+<script setup>
+function detecCoordinates() {
+  navigator.geolocation.getCurrentPosition((position) => {
+    console.log("Широта: " + position.coords.latitude);
+    console.log("Долгота: " + position.coords.longitude);
+  });
+}
+</script>
 
 <style lang="scss" scoped>
 .navigationButton {
-  background: url('@/assets/img/navigationButton.svg');
   width: 50px;
   height: 50px;
+  cursor: pointer;
 
   &.large {
     scale: 1.5;
     transition: all 2s ease;
   }
 }
-
 </style>
