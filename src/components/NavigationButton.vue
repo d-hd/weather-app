@@ -8,10 +8,15 @@
 </template>
 
 <script setup>
+const emit = defineEmits(['coordinates'])
+
 function detecCoordinates() {
   navigator.geolocation.getCurrentPosition((position) => {
-    console.log("Широта: " + position.coords.latitude);
-    console.log("Долгота: " + position.coords.longitude);
+    const coord = {
+      lat: position.coords.latitude,
+      lon: position.coords.longitude,
+    }
+    emit('coordinates', coord)
   });
 }
 </script>

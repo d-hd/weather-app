@@ -3,16 +3,23 @@
     <Snow v-if="weatherData?.state === 'snow'" />
     <Rain v-if="weatherData?.state === 'rain'" />
     <Cloud v-if="weatherData?.state === 'Clouds'"/>
-    <div class="wrapper">
+    <Alert 
+      :alert="alert"
+      @close="alert = null" />
+    <div 
+      class="wrapper"
+      :class="[{shadow: alert}, {warm: weatherData?.temp > 5}]">
       <div class="container">
         <div 
           class="column active center"
           :class="{corner: weatherData}">
-          <Search 
-          :modelValue="query"
-          :class="{large: !weatherData}"
-          @update:modelValue="(value) => getWeatherByCountry(value)" />
-          <NavigationButton :class="{large: !weatherData}"/>
+          <Search
+            :modelValue="query"
+            @update:modelValue="(value) => getWeather(value)"
+            :class="{large: !weatherData}" />
+          <NavigationButton 
+            :class="{large: !weatherData}"
+            @coordinates="(coordinates) => getWeather(null, coordinates)"/>
         </div>
         <WeatherInfo :weatherData="weatherData" />
       </div>
@@ -26,18 +33,34 @@ import WeatherInfo from './components/WeatherInfo.vue';
 import Snow from './components/WeatherState/Snow.vue';
 import Rain from './components/WeatherState/Rain.vue';
 import Cloud from './components/WeatherState/Cloud.vue';
+import Alert from './components/Alert.vue';
 import NavigationButton from './components/NavigationButton.vue';
-import { computed, ref } from 'vue'
+import { ref } from 'vue';
+const apiKey = import.meta.env.VITE_API_KEY;
 
+const url = 'https://api.openweathermap.org/data/2.5/weather'
 const weatherData = ref(null)
 const query = ref('')
+const alert = ref(null);
 
-async function getWeatherByCountry(country) {
-  const res = JSON.parse('{"coord":{"lon":37.6156,"lat":55.7522},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":-3.43,"feels_like":-7.31,"temp_min":-3.87,"temp_max":-2.76,"pressure":1023,"humidity":97,"sea_level":1023,"grnd_level":1003},"visibility":6872,"wind":{"speed":2.7,"deg":258,"gust":8.65},"clouds":{"all":56},"dt":1702745327,"sys":{"type":1,"id":9027,"country":"RU","sunrise":1702706023,"sunset":1702731374},"timezone":10800,"id":524901,"name":"Moscow","cod":200}');
+async function getWeather(city, coordinates = null) {
+  let fetchUrl = coordinates ? `${url}?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&APPID=${apiKey}` : `${url}?q=${city}&units=metric&APPID=${apiKey}`
 
-  sanitizeData(res)
-  // fetch
-  // setResults(result)
+  try {
+    let respons = await fetch(fetchUrl, {
+      method: 'GET',
+    })
+
+    const weather = await respons.json()
+
+    sanitizeData(weather)
+  } catch (error) {
+    alert.value = {
+      type: 'danger',
+      title: 'Error', 
+      text: 'No data was received. Please try again later or contact your administrator.'
+    }
+  }
 }
 
 function sanitizeData(weather) {
@@ -49,17 +72,21 @@ function sanitizeData(weather) {
     temp: weather.main.temp,
     state: weather.weather[0].main,
   }
-  console.log(weatherData.value.state)
 }
 </script>
 
 <style scoped lang="scss">
 .wrapper {
   height: 100vh;
+  transition: background-image 2s ease-in-out;
   background-image: linear-gradient(0deg, rgba(49,61,109, 100) 0%, rgba(98,124,157, 100) 100%);
 
   &.warm {
     background-image: linear-gradient(0deg, rgba(118,123,45, 100) 0%, rgba(217,185,69, 100) 100%);
+  }
+
+  &.shadow {
+    filter: blur(8px);
   }
 }
 </style>

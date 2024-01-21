@@ -13,14 +13,4 @@
   animation: water 0.5s linear infinite;
   opacity: 0.2;
 }
-
-@keyframes water {
-  0% {
-    background-position: -10% -10%;
-  }
-
-  100% {
-    background-position: 20% 100%;
-  }
-}
 </style>
