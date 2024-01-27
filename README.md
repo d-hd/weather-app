@@ -1,6 +1,6 @@
 # weather-app
 
-This template should help get you started developing with Vue 3 in Vite.
+Небольшое приложение на vue3 на composition API для просмотра погоды. Данные о погоде получаются через API с сайта api.openweathermap.org
 
 ## Project Setup
 

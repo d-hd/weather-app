@@ -3,8 +3,7 @@
     class="btn"
     :class="color"
     :disabled="disabled"
-    @click.prevent="$emit('action')"
-  >
+    @click.prevent="$emit('action')">
     <slot />
   </button>
 </template>
@@ -15,14 +14,16 @@ const props = defineProps({
     type: String,
     desc: 'Цвет кнопки',
     validator(value) {
-      return ['primary', 'danger', 'warning'].includes(value)
+      return ['primary', 'danger', 'warning'].includes(value);
     }
   },
   disabled: {
     type: Boolean,
     desc: 'Заблокировать кнопку'
   }
-})
+});
+
+const emit = defineEmits(['action']);
 </script>
 
 <style lang="scss" scoped>

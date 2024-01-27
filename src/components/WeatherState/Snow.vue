@@ -2,8 +2,7 @@
   <div
     v-for="index in 150"
     :key="index"
-    class="snow"
-    ></div>
+    class="snow" />
 </template>
 
 <style lang="scss" scoped>

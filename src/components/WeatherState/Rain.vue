@@ -1,5 +1,5 @@
 <template>
-  <div class="rain"></div>
+  <div class="rain" />
 </template>
 
 <style lang="scss" scoped>

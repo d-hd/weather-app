@@ -1,11 +1,11 @@
 <template>
   <div class="cloudWrap">
-    <div class="cloudSky"></div>
+    <div class="cloudSky" />
     <div 
       v-for="index in 5"
       :key="index"
       class="cloud">
-      <div class="cloud__item"></div>
+      <div class="cloud__item" />
     </div>
   </div>
 </template>

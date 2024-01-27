@@ -1,6 +1,7 @@
 <template>
   <div class="search">
-    <input 
+    <input
+      v-focus
       type="text"
       class="search__bar"
       :placeholder="placeholder"
@@ -20,11 +21,15 @@ const props = defineProps({
     desc: 'Placeholder for input',
     default: 'Search...'
   },
-})
-const emit = defineEmits(['update:modelValue'])
+});
+const emit = defineEmits(['update:modelValue']);
+
+const vFocus = {
+  mounted: (el) => el.focus()
+};
 
 function updateValue(e) {
-  emit('update:modelValue', e.target.value)
+  emit('update:modelValue', e.target.value);
 }
 </script>
 

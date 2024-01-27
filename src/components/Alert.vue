@@ -1,15 +1,13 @@
 <template>
   <div 
-    class="alert"
     v-if="alert"
-    :class="alert.type"
-  >
+    class="alert"
+    :class="alert.type">
     <h3>{{ alert.title }}</h3>
     <p>{{ alert.text }}</p>
     <VButton 
       :color="alert.type"
-      @action="$emit('close')"
-    >
+      @action="$emit('close')">
       Закрыть
     </VButton>
   </div>
@@ -23,7 +21,9 @@ const props = defineProps({
     type: Object,
     desc: 'Объект с ошибкой, где type - тип уведомления, title - заголовок уведомления, text - текст уведомления'
   }
-})
+});
+
+const emit = defineEmits(['close']);
 </script>
 
 <style lang="scss" scoped>
